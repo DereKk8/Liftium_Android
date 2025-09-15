@@ -6,11 +6,11 @@ import java.util.UUID
 
 // 1. Users Table
 data class User(
-    val id: String, // UUID from Supabase Auth
-    val email: String,
+    val id: String, // UUID - simple identifier
+    val email: String, // Optional field (not used for authentication)
     val createdAt: LocalDateTime,
-    val userName: String,
-    val rememberMeDevice: String? = null // Optional device id for remember me feature
+    val userName: String, // Primary identifier for account access
+    val rememberMeDevice: String? = null // Not used (no authentication system)
 )
 
 // 2. Splits Table

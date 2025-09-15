@@ -13,6 +13,7 @@ import androidx.navigation3.runtime.rememberSavedStateNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.navigation3.ui.rememberSceneSetupNavEntryDecorator
 import com.example.liftium.ui.screens.HomeScreen
+import com.example.liftium.ui.screens.SettingsScreen
 import kotlinx.serialization.Serializable
 
 // Navigation keys implementing NavKey interface
@@ -79,15 +80,18 @@ fun NavigationHost(modifier: Modifier = Modifier) {
                     )
                 }
                 
-                // Placeholder entries for unimplemented screens - they just return to home
                 is ProfileRoute -> NavEntry(key) {
-                    HomeScreen(
-                        onStartWorkout = { backStack.add(WorkoutRoute) },
-                        onTrackProgress = { backStack.add(ProgressRoute) },
-                        onGetStronger = { backStack.add(WorkoutRoute) },
-                        onStartFirstWorkout = { backStack.add(WorkoutRoute) },
-                        onNavigateToProfile = { },
-                        currentRoute = "profile"
+                    SettingsScreen(
+                        onBackClick = {
+                            backStack.removeLastOrNull()
+                        },
+                        onEditTrainingSplit = {
+                            // TODO: Navigate to Training Split Settings when implemented
+                        },
+                        onLogOut = {
+                            // Simply navigate back to home
+                            backStack.removeLastOrNull()
+                        }
                     )
                 }
                 
