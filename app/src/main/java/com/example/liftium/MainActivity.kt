@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.liftium.navigation.NavigationHost
+import com.example.liftium.ui.screens.TrainingSplitSettingsScreen
 import com.example.liftium.ui.theme.LiftiumTheme
 
 class MainActivity : ComponentActivity() {
@@ -15,7 +16,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LiftiumTheme {
-                LiftiumApp()
+                TrainingSplitSettingsScreen()
+                //LiftiumApp()
             }
         }
     }
