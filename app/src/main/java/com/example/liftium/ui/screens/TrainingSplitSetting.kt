@@ -38,9 +38,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.CreationExtras
 import android.R.attr.contentDescription
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.ListAlt
 import androidx.compose.ui.graphics.ColorFilter.Companion.tint
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -112,6 +116,20 @@ fun TrainingSplitSettingsScreen (
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.height(16.dp))
+            ToolCard(
+                icon = Icons.Default.ListAlt,
+                title = "Update Workout Split Logs",
+                description = "Edit and manage your existing workout logs and make adjustments as needed",
+                actionText = "Update Logs"
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            ToolCard(
+                icon = Icons.Default.History,
+                title = "View Workout History",
+                description = "Review your past performance, completed workouts, and progress over time.",
+                actionText = "View history"
+            )
+
 
         }
     }
@@ -214,21 +232,20 @@ fun SectionHeader(title: String, onActionClick: () -> Unit) {
 }
 
 @Composable
-fun ToolCard(
+private fun ToolCard(
     icon: ImageVector,
     title: String,
     description: String,
     actionText: String,
     onActionClick: () -> Unit = {}
 ) {
-
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
-    ){
+    ) {
         Row(
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.Top
@@ -241,9 +258,32 @@ fun ToolCard(
                     .size(40.dp)
                     .align(Alignment.CenterVertically)
             )
-
             Spacer(modifier = Modifier.width(16.dp))
-
+            Column {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = description,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    lineHeight = 20.sp
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                TextButton(
+                    onClick = onActionClick,
+                    contentPadding = PaddingValues(0.dp)
+                ) {
+                    Text(
+                        text = "$actionText ->",
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
         }
     }
 }
